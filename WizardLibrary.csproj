@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<Version>1.0.7</Version>
+		<!-- Версия вашего пакета -->
+		<Authors>Wizard</Authors>
+		<!-- Имя автора -->
+		<Company>B2C</Company>
+		<!-- Название компании -->
+		<Product>WizardLibrary</Product>
+		<!-- Название продукта -->
+		<PackageId>WizardLibraryB2C</PackageId>
+		<!-- Уникальный ID пакета -->
+		<Description>Частная библиотека для упрощения написания кода.</Description>
+		<!-- Описание пакета -->
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="README.md" Pack="true" PackagePath="" />
+		<None Include="LICENSE.md" Pack="true" PackagePath="" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Appium.WebDriver" Version="4.4.5" />
+	  <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	  <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="DB\" />
+	</ItemGroup>
+
+</Project>
