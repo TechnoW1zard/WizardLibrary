@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Appium.MultiTouch;
 using OpenQA.Selenium.Support.UI;
@@ -51,14 +52,23 @@ namespace WizardLibrary.Appium
             return element;
         }
     }
+
+
     public class Elements
     {
         public static AndroidDriver<AndroidElement> _driver;
         public static string _device_ser;
-        public Elements(AndroidDriver<AndroidElement> driver, string device_ser)
+        public Elements( string device_ser, string appium_url)
         {
-            _driver = driver;
             _device_ser = device_ser;
+            AppiumOptions options = new AppiumOptions();
+
+            options.AddAdditionalCapability("udid", _device_ser);
+            options.AddAdditionalCapability("platformName", "Android");
+            options.AddAdditionalCapability("newCommandTimeout", "1800000");
+            //options.AddAdditionalCapability("app", "ru.tsk.ftc.bender.qpay");
+            _driver = new AndroidDriver<AndroidElement>(new Uri($"http://{appium_url}/wd/hub"), options);
+
         }
 
         /// <summary>

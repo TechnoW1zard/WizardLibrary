@@ -6,14 +6,21 @@ namespace WizardLibrary.API.GPTs.Gpt4All
 {
     public class Gpt4AllApi
     {
+        
 
-        public static Gpt4AllResponse SendMessage(Gpt4AllRequest jsonRequest, int port)
+        /// <summary>
+        /// Отправка запроса для gpt4all
+        /// </summary>
+        /// <param name="jsonRequest">Параметры для запроса</param>
+        /// <param name="url">вам нужно задать его самостоятельно, так как лично я делал proxy через nginx и адрес у меня другой. По умолчанию стоит localhost</param>
+        /// <returns></returns>
+        public static Gpt4AllResponse SendMessage(Gpt4AllRequest jsonRequest, string url = "http://localhost:4891/v1/chat/completions")
         {
 
             string requestBody = JsonSerializer.Serialize(jsonRequest);
             using HttpClient client = new HttpClient();
             StringContent content = new StringContent(requestBody, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = client.PostAsync($"http://localhost:{port}/v1/chat/completions", content).Result;
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
             string responseContent = response.Content.ReadAsStringAsync().Result;
             return JsonSerializer.Deserialize<Gpt4AllResponse>(responseContent);
         }
